@@ -34,6 +34,12 @@ It iterates conv_layers-1 times because the first convolutional layer has alread
 for l in range(conv_layers-1):
     model.add(Conv2D(layer_sizes,(3,3)))
     model.add(Activation("relu"))
+  '''
+  Activation:introduces non linearity.if we just have linear functions, summing em up would just give us another
+linear function and acts as a single layer no matter how many layers we have in it
+non-linear activation functions are essential components of neural network models like CNNs, 
+enabling them to learn complex patterns, capture hierarchical representations, break symmetry, and facilitate the training process through backpropagation.      
+  '''
     model.add(MaxPooling2D(pool_size=(2,2)))
 
 model.add(Flatten()) #This adds a flatten layer to convert the 2D feature maps into a 1D vector, which can be fed into the dense layers.
@@ -46,6 +52,19 @@ for l in range(dense_layers):
     model.add(Dense(layer_sizes))
     model.add(Activation("relu"))
     model.add(Dropout(0.2))
+
+'''
+Overfitting is a common problem in machine learning where a model learns the training data too well.
+it can capture noise or random fluctuations in the training data as if they were meaningful patterns or
+When the model becomes too tailored to the training data, it may fail to generalize to new, unseen data. 
+This results in poor performance on test data or real-world data, as the model has learned to memorize the training examples rather 
+than learn the underlying patterns that generalize to new data.
+
+Dropout randomly deactivates neurons during training, forcing the model to learn redundant representations and reducing reliance on specific neurons, 
+thus preventing overfitting.
+
+0.2 is the dropout rate, indicating that 20% of the neurons in the previous layer will be randomly set to zero during each training iteration
+'''
 
 model.add(Dense(1))
 model.add(Activation("sigmoid")) 
@@ -64,9 +83,15 @@ Dropout is added to prevent overfitting.
 
 '''
 
-model.compile(loss="binary_crossentropy",optimizer ="adam",metrics=['accuracy'])
+model.compile(loss="binary_crossentropy",optimizer ="adam",metrics=['accuracy']) 
+'''
+The loss function (or objective function) measures how well the model performs on the training data.
+'binary_crossentropy' is used as the loss function, which is commonly used for binary classification problems.
 
-model.fit(X, y, batch_size=32, epochs=10, validation_split=0.1)
+The optimizer is responsible for updating the model's parameters (weights and biases)
+'''
+
+model.fit(X, y, batch_size=32, epochs=10, validation_split=0.1) #Training is done in batches of size 32, for 10 epochs, with 10% of the data used for validation.
 
 model.save('doggos_v_cattos.model')
 
@@ -74,19 +99,10 @@ model.save('doggos_v_cattos.model')
 In summary, this code loads image data of cats and dogs from pickle files, builds a convolutional neural network (CNN) model, 
 trains it on the data, and saves the trained model for future use in classifying images as either cats or dogs.
 
-dense:A Dense layer feeds all outputs from the previous layer to all its neurons, 
-each neuron providing one output to the next layer. 
-A Dense(10) has ten neurons
 
-dropout:Dropout works by randomly setting the outgoing edges of hidden units 
-(neurons that make up hidden layers) to 0 at each update of the training phase
 
-Activation:introduces non linearity.if we just have linear functions, summing em up would just give us another
-linear function and acts as a single layer no matter how many layers we have in it
-non-linear activation functions are essential components of neural network models like CNNs, 
-enabling them to learn complex patterns, capture hierarchical representations, break symmetry, and facilitate the training process through backpropagation.
-            
-            
+
+      
 
 '''
             
