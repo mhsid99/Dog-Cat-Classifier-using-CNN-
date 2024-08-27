@@ -15,5 +15,3 @@ https://www.microsoft.com/en-us/download/confirmation.aspx?id=54765
 4.Take a folder and put a few images to test it(I used 200 images of cats and dogs each) and run the test file
 
 IDE Used: Spyder
-
-credits:https://www.youtube.com/channel/UCfzlCWGWYyIQ0aLC5w48gBQ
